@@ -23,11 +23,11 @@ final class DirectionsRequest extends AbstractRequest
             'coordinates.*' => ['required', 'array', 'size:2'],
             'coordinates.*.0' => ['required', 'numeric', 'between:-180,180'],
             'coordinates.*.1' => ['required', 'numeric', 'between:-90,90'],
-            'profile' => ['nullable', Rule::in(['driving', 'walking'])],
-            'overview' => ['nullable', Rule::in(['simplified', 'full', 'false'])],
+            'profile' => ['nullable', Rule::enum(DirectionsProfile::class)],
+            'overview' => ['nullable', Rule::enum(OverviewType::class)],
             'steps' => ['nullable', 'boolean'],
             'alternatives' => ['nullable', 'boolean'],
-            'geometries' => ['nullable', Rule::in(['polyline', 'polyline6', 'geojson'])],
+            'geometries' => ['nullable', Rule::enum(GeometriesType::class)],
         ];
     }
 

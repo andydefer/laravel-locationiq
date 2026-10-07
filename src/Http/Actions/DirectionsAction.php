@@ -12,20 +12,31 @@ use AndyDefer\PhpLocationIq\Contracts\LocationIqClientInterface;
 use AndyDefer\PhpLocationIq\Records\DirectionsRecord;
 use InvalidArgumentException;
 
+/**
+ * HTTP action that computes a route between two or more coordinates.
+ *
+ * The incoming request must carry a {@see DirectionsRecord}. The action
+ * forwards it to the LocationIQ client, catches SDK-level coordinate
+ * validation errors, maps any API-side error to an {@see ErrorCode}, and
+ * returns the route payload on success.
+ */
 final class DirectionsAction extends AbstractAction
 {
     public function __construct(
         private readonly LocationIqClientInterface $client,
     ) {}
 
+    /**
+     * {@inheritDoc}
+     */
     protected function handle(AbstractRecord $request): ResponseFactory
     {
         /** @var DirectionsRecord $request */
         try {
             $response = $this->client->getDirections($request);
-        } catch (InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $exception) {
             return ErrorCode::INVALID_COORDINATES
-                ->toJsonResponseFactory($e->getMessage());
+                ->toJsonResponseFactory($exception->getMessage());
         }
 
         if ($response->hasError()) {

@@ -19,7 +19,7 @@ final class ReverseRequest extends AbstractRequest
         return [
             'lat' => ['required', 'numeric', 'between:-90,90'],
             'lon' => ['required', 'numeric', 'between:-180,180'],
-            'format' => ['nullable', Rule::in(['json', 'jsonv2', 'geojson', 'geocodejson'])],
+            'format' => ['nullable', Rule::enum(NominatimFormat::class)],
             'accept_language' => ['nullable', 'string', 'max:10'],
             'zoom' => ['nullable', 'integer', 'between:0,18'],
             'address_details' => ['nullable', 'boolean'],
