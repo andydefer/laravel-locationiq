@@ -1,0 +1,49 @@
+# ====================================================
+# Laravel / PHP standard
+# ====================================================
+/vendor/
+/composer.lock
+/node_modules/
+.env
+.env.*.backup
+.phpunit.result.cache
+.phpunit.cache
+
+# Storage & bootstrap
+/storage/*.key
+/storage/framework/cache/data/*
+/storage/logs/*.log
+/storage/app/public/*
+/bootstrap/cache/*.php
+
+# ====================================================
+# IDE / OS files
+# ====================================================
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ====================================================
+# Generated reports / test artifacts
+# ====================================================
+CHANGED_FILES.md
+FILES_CHECKLIST.md
+pint-test.md
+rector.md
+phpstan.md
+psalm.md
+diff.txt
+all.txt
+
+# Makefile / build backups
+*.bak
+calendar.sh
+rector.php.cache
+
+# Crash dumps
+erl_crash.dump
+
+# Prompts / AI files
+prompts/

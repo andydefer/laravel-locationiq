@@ -1,0 +1,72 @@
+{
+    "authors": [
+        {
+            "email": "andykanidimbu@gmail.com",
+            "name": "andydefer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AndyDefer\\LaravelLocationIq\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AndyDefer\\LaravelLocationIq\\Tests\\": "tests/"
+        }
+    },
+    "description": "Laravel SDK for integrating LocationIQ and Nominatim geospatial services (balance, timezone, directions, reverse geocoding).",
+    "extra": {
+        "laravel": {
+            "aliases": {
+                "LocationIq": "AndyDefer\\LaravelLocationIq\\Facades\\LocationIq",
+                "Nominatim": "AndyDefer\\LaravelLocationIq\\Facades\\Nominatim"
+            },
+            "providers": [
+                "AndyDefer\\LaravelLocationIq\\LocationIqServiceProvider"
+            ]
+        }
+    },
+    "keywords": [
+        "laravel",
+        "laravel-package",
+        "locationiq",
+        "nominatim",
+        "geocoding",
+        "reverse-geocoding",
+        "directions",
+        "timezone",
+        "openstreetmap",
+        "geospatial",
+        "api",
+        "php",
+        "open-source"
+    ],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "name": "andydefer/laravel-locationiq",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.2",
+        "andydefer/laravel-actions": "^2.12.1",
+        "andydefer/php-locationiq": "^0.0.1"
+    },
+    "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.6",
+        "larastan/larastan": "^3.8",
+        "laravel/pint": "^1.26",
+        "orchestra/testbench": "^10.8",
+        "phpunit/phpunit": "^12.5",
+        "rector/rector": "*",
+        "symfony/var-dumper": "^7.0",
+        "vimeo/psalm": "^6.14"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ],
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "type": "library"
+}
