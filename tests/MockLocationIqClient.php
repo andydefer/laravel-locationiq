@@ -9,15 +9,19 @@ use AndyDefer\PhpClient\Enums\ContentType;
 use AndyDefer\PhpLocationIq\Contracts\LocationIqClientInterface;
 use AndyDefer\PhpLocationIq\Contracts\Responses\BalanceResponseInterface;
 use AndyDefer\PhpLocationIq\Contracts\Responses\DirectionsResponseInterface;
+use AndyDefer\PhpLocationIq\Contracts\Responses\MatrixResponseInterface;
 use AndyDefer\PhpLocationIq\Contracts\Responses\TimezoneResponseInterface;
 use AndyDefer\PhpLocationIq\Enums\LocationIqBaseUrl;
 use AndyDefer\PhpLocationIq\Records\DirectionsRecord;
+use AndyDefer\PhpLocationIq\Records\MatrixRecord;
 use AndyDefer\PhpLocationIq\Records\TimezoneRecord;
 use AndyDefer\PhpLocationIq\Requests\BalanceRequest;
 use AndyDefer\PhpLocationIq\Requests\DirectionsRequest;
+use AndyDefer\PhpLocationIq\Requests\MatrixRequest;
 use AndyDefer\PhpLocationIq\Requests\TimezoneRequest;
 use AndyDefer\PhpLocationIq\Responses\BalanceResponse;
 use AndyDefer\PhpLocationIq\Responses\DirectionsResponse;
+use AndyDefer\PhpLocationIq\Responses\MatrixResponse;
 use AndyDefer\PhpLocationIq\Responses\TimezoneResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -60,6 +64,15 @@ final class MockLocationIqClient implements LocationIqClientInterface
             DirectionsRequest::class,
             [$record, $this->baseUrl, $this->apiKey],
             DirectionsResponse::class,
+        );
+    }
+
+    public function getMatrix(MatrixRecord $record): MatrixResponseInterface
+    {
+        return $this->dispatch(
+            MatrixRequest::class,
+            [$record, $this->baseUrl, $this->apiKey],
+            MatrixResponse::class,
         );
     }
 
@@ -119,6 +132,46 @@ final class MockLocationIqClient implements LocationIqClientInterface
     }
 
     public function addDirectionsErrorResponse(string $code): void
+    {
+        $this->addSuccessResponse(['code' => $code]);
+    }
+
+    /**
+     * Appends a successful Matrix response to the mock queue.
+     *
+     * @param  array<int, array<int, float|null>>|null  $durations  Durations matrix (seconds).
+     * @param  array<int, array<int, float|null>>|null  $distances  Distances matrix (meters).
+     * @param  array<int, array<string, mixed>>  $sources  Resolved source waypoints.
+     * @param  array<int, array<string, mixed>>  $destinations  Resolved destination waypoints.
+     */
+    public function addMatrixSuccessResponse(
+        ?array $durations = null,
+        ?array $distances = null,
+        array $sources = [],
+        array $destinations = [],
+    ): void {
+        $payload = ['code' => 'Ok'];
+
+        if ($durations !== null) {
+            $payload['durations'] = $durations;
+        }
+
+        if ($distances !== null) {
+            $payload['distances'] = $distances;
+        }
+
+        $payload['sources'] = $sources;
+        $payload['destinations'] = $destinations;
+
+        $this->addSuccessResponse($payload);
+    }
+
+    /**
+     * Appends a Matrix error response to the mock queue.
+     *
+     * @param  string  $code  Error code (`NoTable`, `NotImplemented`).
+     */
+    public function addMatrixErrorResponse(string $code): void
     {
         $this->addSuccessResponse(['code' => $code]);
     }

@@ -22,6 +22,8 @@ enum ErrorCode: string implements ErrorDescribable
     case INVALID_OPTIONS = 'INVALID_OPTIONS';
     case INVALID_COORDINATES = 'INVALID_COORDINATES';
     case MISSING_API_KEY = 'MISSING_API_KEY';
+    case NO_TABLE = 'NO_TABLE';
+    case NOT_IMPLEMENTED = 'NOT_IMPLEMENTED';
 
     // Server errors (HTTP 500)
     case UNKNOWN_ERROR = 'UNKNOWN_ERROR';
@@ -35,7 +37,9 @@ enum ErrorCode: string implements ErrorDescribable
             self::INVALID_REQUEST,
             self::INVALID_OPTIONS,
             self::INVALID_COORDINATES,
-            self::MISSING_API_KEY => HttpStatusCode::UNPROCESSABLE_ENTITY,
+            self::MISSING_API_KEY,
+            self::NO_TABLE,
+            self::NOT_IMPLEMENTED => HttpStatusCode::UNPROCESSABLE_ENTITY,
 
             self::INVALID_KEY => HttpStatusCode::UNAUTHORIZED,
             self::ACCESS_RESTRICTED => HttpStatusCode::FORBIDDEN,
@@ -59,6 +63,8 @@ enum ErrorCode: string implements ErrorDescribable
             self::INVALID_OPTIONS => 'InvalidOptions',
             self::INVALID_COORDINATES => 'Invalid coordinates',
             self::MISSING_API_KEY => 'Missing API key',
+            self::NO_TABLE => 'No route found',
+            self::NOT_IMPLEMENTED => 'This request is not supported',
             self::UNKNOWN_ERROR => 'Unknown error - Please try again after some time',
         };
     }
@@ -111,6 +117,8 @@ enum ErrorCode: string implements ErrorDescribable
             'unable to geocode' => self::UNABLE_TO_GEOCODE,
             'rate limited day' => self::RATE_LIMITED_DAY,
             'invalidoptions' => self::INVALID_OPTIONS,
+            'notable' => self::NO_TABLE,
+            'notimplemented' => self::NOT_IMPLEMENTED,
             'unknown error - please try again after some time' => self::UNKNOWN_ERROR,
             default => self::UNKNOWN_ERROR,
         };
