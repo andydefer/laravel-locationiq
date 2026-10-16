@@ -48,8 +48,8 @@
     "prefer-stable": true,
     "require": {
         "php": "^8.2",
-        "andydefer/php-locationiq": "^0.3.0",
-        "andydefer/laravel-nemesis": "^1.22.15"
+        "andydefer/php-locationiq": "^0.3.1",
+        "andydefer/laravel-nemesis": "^1.22.16"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.6",
