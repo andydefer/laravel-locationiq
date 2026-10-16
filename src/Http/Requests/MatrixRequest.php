@@ -13,8 +13,8 @@ use AndyDefer\PhpLocationIq\Enums\DirectionsProfile;
 use AndyDefer\PhpLocationIq\Enums\FallbackCoordinate;
 use AndyDefer\PhpLocationIq\Enums\MatrixAnnotation;
 use AndyDefer\PhpLocationIq\Records\MatrixRecord;
-use AndyDefer\PhpLocationIq\ValueObjects\LocationVO;
 use AndyDefer\PhpLocationIq\ValueObjects\MatrixOptionsVO;
+use AndyDefer\PhpVo\ValueObjects\LocationVO;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
 

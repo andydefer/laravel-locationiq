@@ -11,7 +11,7 @@ use AndyDefer\PhpLocationIq\Enums\DirectionsProfile;
 use AndyDefer\PhpLocationIq\Enums\GeometriesType;
 use AndyDefer\PhpLocationIq\Enums\OverviewType;
 use AndyDefer\PhpLocationIq\Records\DirectionsRecord;
-use AndyDefer\PhpLocationIq\ValueObjects\LocationVO;
+use AndyDefer\PhpVo\ValueObjects\LocationVO;
 use Illuminate\Validation\Rule;
 
 final class DirectionsRequest extends AbstractRequest
