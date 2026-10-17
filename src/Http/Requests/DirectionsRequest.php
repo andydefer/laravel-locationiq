@@ -6,11 +6,11 @@ namespace AndyDefer\LaravelLocationIq\Http\Requests;
 
 use AndyDefer\Actions\Http\Requests\AbstractRequest;
 use AndyDefer\DomainStructures\Abstracts\AbstractRecord;
-use AndyDefer\PhpLocationIq\Collections\LocationVOCollection;
 use AndyDefer\PhpLocationIq\Enums\DirectionsProfile;
 use AndyDefer\PhpLocationIq\Enums\GeometriesType;
 use AndyDefer\PhpLocationIq\Enums\OverviewType;
 use AndyDefer\PhpLocationIq\Records\DirectionsRecord;
+use AndyDefer\PhpVo\Collections\LocationVOCollection;
 use AndyDefer\PhpVo\ValueObjects\LocationVO;
 use Illuminate\Validation\Rule;
 

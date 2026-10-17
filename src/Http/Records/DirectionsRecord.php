@@ -6,11 +6,11 @@ namespace AndyDefer\LaravelLocationIq\Http\Records;
 
 use AndyDefer\DomainStructures\Abstracts\AbstractRecord;
 use AndyDefer\DomainStructures\Traits\Hydratable;
-use AndyDefer\PhpLocationIq\Collections\LocationVOCollection;
 use AndyDefer\PhpLocationIq\Enums\DirectionsProfile;
 use AndyDefer\PhpLocationIq\Enums\GeometriesType;
 use AndyDefer\PhpLocationIq\Enums\OverviewType;
 use AndyDefer\PhpLocationIq\Records\DirectionsRecord as ApiDirectionsRecord;
+use AndyDefer\PhpVo\Collections\LocationVOCollection;
 use AndyDefer\PhpVo\ValueObjects\LocationVO;
 
 final class DirectionsRecord extends AbstractRecord
